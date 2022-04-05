@@ -1,34 +1,28 @@
 let kvizoveOtazky = [
     {otazka: 'K čemu, mimo jiné, používá panda červená svůj ocásek?', 
-        odpovedA: 'jako přikrývku', 
-        odpovedB: 'jako vějíř', 
-        odpovedC: 'jako prachovku', 
-        odpovedD: 'jako uchošťour',
-        foto: 'obrazky/panda.jpg'},
+    odpoved: ['jako přikrývku', 'jako vějíř', 'jako prachovku', 'jako uchošťour'],
+    spravnaOdpoved: 'jako přikrývku',
+    foto: 'obrazky/panda.jpg'},
+
     {otazka: 'Co umí ovce?', 
-        odpovedA: 'smát se', 
-        odpovedB: 'vyprávět vtipy', 
-        odpovedC: 'vařit', 
-        odpovedD: 'bruslit',
-        foto: 'obrazky/ovce.jpg'},
+    odpoved: ['smát se', 'vyprávět vtipy', 'vařit', 'bruslit'],
+    spravnaOdpoved: 'smát se',
+    foto: 'obrazky/ovce.jpg'},
+
     {otazka: 'Jak se zdraví lední medvědi?', 
-        odpovedA: 'zvednutím tlapy', 
-        odpovedB: 'plivnutím na zem', 
-        odpovedC: 'třením čenichů', 
-        odpovedD: 'zakroucením zadkem',
-        foto: 'obrazky/medved.jpg'},
+    odpoved: ['zvednutím tlapy', 'plivnutím na zem', 'třením čenichů', 'zakroucením zadkem'],
+    spravnaOdpoved: 'třením čenichů',
+    foto: 'obrazky/medved.jpg'},
+
     {otazka: 'Jakým způsobem se dokáží bavit makakové?', 
-        odpovedA: 'hrají Minecraft', 
-        odpovedB: 'vyšívají', 
-        odpovedC: 'hází po sobě sněhové koule', 
-        odpovedD: 'dívají se na lidi',
-        foto: 'obrazky/makak.jpg'},
+    odpoved: ['hrají Minecraft', 'vyšívají', 'hází po sobě sněhové koule', 'dívají se na televizi'],
+    spravnaOdpoved: 'hází po sobě sněhové koule',
+    foto: 'obrazky/makak.jpg'},
+
     {otazka: 'Která zvířata nemají pro svá mláďata školky?', 
-        odpovedA: 'vlci', 
-        odpovedB: 'kachny', 
-        odpovedC: 'divočáci', 
-        odpovedD: 'pavouci',
-        foto: 'obrazky/pes.jpg'},
+    odpoved: ['vlci', 'kachny', 'divočáci', 'pavouci'],
+    spravnaOdpoved: 'pavouci',
+    foto: 'obrazky/pes.jpg'},
 ]
 
 let kviz = document.querySelector('.kviz');
@@ -36,7 +30,7 @@ let kviz = document.querySelector('.kviz');
 for (let i = 0; i < kvizoveOtazky.length; i = i + 1) {
 
     //Vytvoření otázky
-    let otazka = document.createElement('div');
+    let otazka = document.createElement('h2');
     otazka.id = 'otazka';
     otazka.innerHTML = kvizoveOtazky[i].otazka;
 
@@ -52,21 +46,18 @@ for (let i = 0; i < kvizoveOtazky.length; i = i + 1) {
     let odpovedi = document.createElement('ul');
     odpovedi.id = 'odpovedi';
 
-    //Vytvoření odpovědi A
-    let odpovedA = document.createElement('li');
-    odpovedA.innerHTML = kvizoveOtazky[i].odpovedA;
+    //Vytvoření odpovědí
+    let moznost1 = document.createElement('li');
+    moznost1.innerHTML = kvizoveOtazky[i].odpoved[0];
 
-    //Vytvoření odpovědi B
-    let odpovedB = document.createElement('li');
-    odpovedB.innerHTML = kvizoveOtazky[i].odpovedB;
+    let moznost2 = document.createElement('li');
+    moznost2.innerHTML = kvizoveOtazky[i].odpoved[1];
 
-    //Vytvoření odpovědi C
-    let odpovedC = document.createElement('li');
-    odpovedC.innerHTML = kvizoveOtazky[i].odpovedC;
+    let moznost3 = document.createElement('li');
+    moznost3.innerHTML = kvizoveOtazky[i].odpoved[2];
 
-    //Vytvoření odpovědi D
-    let odpovedD = document.createElement('li');
-    odpovedD.innerHTML = kvizoveOtazky[i].odpovedD;
+    let moznost4 = document.createElement('li');
+    moznost4.innerHTML = kvizoveOtazky[i].odpoved[3];
 
     //Obrázek
     let ilustrace = document.createElement('div');
@@ -85,8 +76,8 @@ for (let i = 0; i < kvizoveOtazky.length; i = i + 1) {
 
     obsah.appendChild(moznosti);
     moznosti.appendChild(odpovedi);
-    odpovedi.appendChild(odpovedA);
-    odpovedi.appendChild(odpovedB);
-    odpovedi.appendChild(odpovedC);
-    odpovedi.appendChild(odpovedD);
+    odpovedi.appendChild(moznost1);
+    odpovedi.appendChild(moznost2);
+    odpovedi.appendChild(moznost3);
+    odpovedi.appendChild(moznost4);
 }
