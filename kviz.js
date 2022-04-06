@@ -33,7 +33,10 @@ let obsah = document.querySelector('.obsah');
 let ilustrace = document.querySelector('.foto');
 let moznosti = document.querySelector('#moznosti');
 let odpovedi = document.querySelector('#odpovedi');
+let vysledek = document.querySelector('.vysledek');
 i = 0;
+
+window.addEventListener("load", nactiOtazku);
 
 function nactiOtazku() {
     //Vytvoření pořadí
@@ -45,16 +48,21 @@ function nactiOtazku() {
     //Vytvoření odpovědí
     let moznost1 = document.createElement('li');
     moznost1.innerHTML = kvizoveOtazky[i].odpoved[0];
+    moznost1.onclick = dalsiOtazka;
 
     let moznost2 = document.createElement('li');
     moznost2.innerHTML = kvizoveOtazky[i].odpoved[1];
+    moznost2.onclick = dalsiOtazka;
 
     let moznost3 = document.createElement('li');
     moznost3.innerHTML = kvizoveOtazky[i].odpoved[2];
+    moznost3.onclick = dalsiOtazka;
 
     let moznost4 = document.createElement('li');
     moznost4.innerHTML = kvizoveOtazky[i].odpoved[3];
+    moznost4.onclick = dalsiOtazka;
 
+    //Vytvoření obrázku
     let fotka = document.createElement('img');
     fotka.id = 'obrazek';
     fotka.src = kvizoveOtazky[i].foto;
@@ -66,5 +74,17 @@ function nactiOtazku() {
     odpovedi.appendChild(moznost2);
     odpovedi.appendChild(moznost3);
     odpovedi.appendChild(moznost4);
+}
+
+function dalsiOtazka() {
+    if ((i+1) < Object.keys(kvizoveOtazky).length) {
+        i++;
+        nactiOtazku();
+    } else {ukazVysledek()}
+}
+
+function ukazVysledek() {
+    kviz.style.display = 'none';
+    vysledek.style.display = 'block';
 }
     
