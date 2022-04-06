@@ -29,11 +29,16 @@ let kvizoveOtazky = [
 let kviz = document.querySelector('.kviz');
 let poradi = document.querySelector('#poradi');
 let otazka = document.querySelector('#otazka');
-let obsah = document.querySelector('.obsah');
-let ilustrace = document.querySelector('.foto');
-let moznosti = document.querySelector('#moznosti');
+let fotka = document.querySelector('img');
 let odpovedi = document.querySelector('#odpovedi');
+let moznost1 = document.querySelector('#moznost1');
+let moznost2 = document.querySelector('#moznost2');
+let moznost3 = document.querySelector('#moznost3');
+let moznost4 = document.querySelector('#moznost4');
 let vysledek = document.querySelector('.vysledek');
+
+let seznamOdpovedi = [];
+
 i = 0;
 
 window.addEventListener("load", nactiOtazku);
@@ -46,34 +51,20 @@ function nactiOtazku() {
     otazka.innerHTML = kvizoveOtazky[i].otazka;
 
     //Vytvoření odpovědí
-    let moznost1 = document.createElement('li');
     moznost1.innerHTML = kvizoveOtazky[i].odpoved[0];
     moznost1.onclick = dalsiOtazka;
 
-    let moznost2 = document.createElement('li');
     moznost2.innerHTML = kvizoveOtazky[i].odpoved[1];
     moznost2.onclick = dalsiOtazka;
 
-    let moznost3 = document.createElement('li');
     moznost3.innerHTML = kvizoveOtazky[i].odpoved[2];
     moznost3.onclick = dalsiOtazka;
 
-    let moznost4 = document.createElement('li');
     moznost4.innerHTML = kvizoveOtazky[i].odpoved[3];
     moznost4.onclick = dalsiOtazka;
 
     //Vytvoření obrázku
-    let fotka = document.createElement('img');
-    fotka.id = 'obrazek';
     fotka.src = kvizoveOtazky[i].foto;
-
-    //Generování obsahu
-    ilustrace.appendChild(fotka);
-
-    odpovedi.appendChild(moznost1);
-    odpovedi.appendChild(moznost2);
-    odpovedi.appendChild(moznost3);
-    odpovedi.appendChild(moznost4);
 }
 
 function dalsiOtazka() {
