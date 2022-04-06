@@ -50,18 +50,13 @@ function nactiOtazku() {
     //Vytvoření otázky
     otazka.innerHTML = kvizoveOtazky[i].otazka;
 
-    //Vytvoření odpovědí
-    moznost1.innerHTML = kvizoveOtazky[i].odpoved[0];
-    moznost1.onclick = dalsiOtazka;
+    //Vytvoření odpovědí 
+    let moznost = odpovedi.querySelectorAll('li');
 
-    moznost2.innerHTML = kvizoveOtazky[i].odpoved[1];
-    moznost2.onclick = dalsiOtazka;
-
-    moznost3.innerHTML = kvizoveOtazky[i].odpoved[2];
-    moznost3.onclick = dalsiOtazka;
-
-    moznost4.innerHTML = kvizoveOtazky[i].odpoved[3];
-    moznost4.onclick = dalsiOtazka;
+    for (let a = 0; a < moznost.length; a++) {
+        moznost[a].innerHTML = kvizoveOtazky[i].odpoved[a];
+        moznost[a].onclick = dalsiOtazka;
+    }    
 
     //Vytvoření obrázku
     fotka.src = kvizoveOtazky[i].foto;
