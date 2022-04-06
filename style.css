@@ -116,3 +116,9 @@ h1 {
 	font-size: 36px;
 	color: var(--cervena);
 }
+
+.vysledek h1 {
+	font-size: 30px;
+	color: grey;
+	margin-top: 50px;
+}
