@@ -117,8 +117,13 @@ h1 {
 	color: var(--cervena);
 }
 
-.vysledek h1 {
+.vysledek button {
+	font-family: 'Bangers', cursive;
+	font-weight: normal;
 	font-size: 30px;
 	color: grey;
+	border: hidden;
+	background-color: white;
 	margin-top: 50px;
+	cursor: pointer;
 }
