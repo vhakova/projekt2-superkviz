@@ -72,20 +72,30 @@ function ukazVysledek() {
 }
 
 function vypisVysledek() {
+    let skore = document.querySelector('#skore');
     
     for (let i = 0; i < Object.keys(kvizoveOtazky).length; i++) {
         let vypisOdpovedi = document.querySelector('#vypisOdpovedi');
         let indexPravdy = kvizoveOtazky[i].indexPravdy;
-        let polozkaVypisu = document.createElement('div');
+
         let otazkaVypisu = document.createElement('h3');
         let spravnaOdpoved = document.createElement('p');
 
         otazkaVypisu.innerHTML = (i+1) + ' . ' + kvizoveOtazky[i].otazka;
         spravnaOdpoved.innerHTML = 'Správná odpověď byla: ' + kvizoveOtazky[i].odpoved[indexPravdy];
 
-        vypisOdpovedi.appendChild(polozkaVypisu);
-        polozkaVypisu.appendChild(otazkaVypisu);
-        polozkaVypisu.appendChild(spravnaOdpoved);
+        vypisOdpovedi.appendChild(otazkaVypisu);
+        vypisOdpovedi.appendChild(spravnaOdpoved);
     }
+
+    skore.innerHTML = 'Správně!';
+}
+
+function restart() {
+    seznamOdpovedi = [];
+    i = 0;
+    kviz.style.display = 'block';
+    vysledek.style.display = 'none';
+    nactiOtazku();
 }
     
