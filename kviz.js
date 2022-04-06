@@ -43,7 +43,7 @@ window.addEventListener("load", nactiOtazku);
 
 function nactiOtazku() {
     //Vytvoření pořadí
-    poradi.innerHTML = 'Otázka č. ' + Object.keys(kvizoveOtazky)[i+1] + ' z ' + Object.keys(kvizoveOtazky).length;
+    poradi.innerHTML = 'Otázka č. ' + (i+1) + ' z ' + (polozkaNabidky.length+1);
     
     //Vytvoření otázky
     otazka.innerHTML = kvizoveOtazky[i].otazka;
@@ -67,13 +67,9 @@ function zkontrolujOdpovedi(udalost) {
     let tlacitko = udalost.target;
     let indexTlacitka = tlacitko.dataset.odpoved;
     let textTlacitka = tlacitko.innerHTML;
-
-    console.log(indexTlacitka);
-
+    
     seznamOdpovedi.push(textTlacitka);
     seznamIndexu.push(indexTlacitka);
-
-    console.log(seznamOdpovedi);
 }
 
 //Změna otázky
