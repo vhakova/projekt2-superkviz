@@ -32,6 +32,7 @@ let otazka = document.querySelector('#otazka');
 let fotka = document.querySelector('img');
 let odpovedi = document.querySelector('#odpovedi');
 let vysledek = document.querySelector('.vysledek');
+let polozkaNabidky = odpovedi.querySelectorAll('li');
 
 let seznamOdpovedi = [];
 
@@ -47,17 +48,33 @@ function nactiOtazku() {
     otazka.innerHTML = kvizoveOtazky[i].otazka;
 
     //Vytvoření odpovědí 
-    let polozkaNabidky = odpovedi.querySelectorAll('li');
-
     for (let indexNabidky = 0; indexNabidky < polozkaNabidky.length; indexNabidky++) {
         polozkaNabidky[indexNabidky].innerHTML = kvizoveOtazky[i].odpoved[indexNabidky];
         polozkaNabidky[indexNabidky].onclick = dalsiOtazka;
-    }    
-
+    }  
+    
     //Vytvoření obrázku
     fotka.src = kvizoveOtazky[i].foto;
 }
 
+//Zaznamenání odpovědí
+polozkaNabidky.forEach((tlacitko) => {
+    tlacitko.addEventListener('click', zkontrolujOdpovedi);
+});
+
+function zkontrolujOdpovedi(udalost) {
+    let tlacitko = udalost.target;
+    let indexTlacitka = tlacitko.dataset.odpoved;
+    let textTlacitka = tlacitko.innerHTML;
+
+    console.log(indexTlacitka);
+
+    seznamOdpovedi.push(textTlacitka);
+
+    console.log(seznamOdpovedi);
+}
+
+//Změna otázky
 function dalsiOtazka() {
     if ((i+1) < Object.keys(kvizoveOtazky).length) {
         i++;
@@ -65,12 +82,14 @@ function dalsiOtazka() {
     } else {ukazVysledek()}
 }
 
+//Změna z otázek na výsledky
 function ukazVysledek() {
     kviz.style.display = 'none';
     vysledek.style.display = 'block';
     vypisVysledek();
 }
 
+//Zobrazení údajů ve výsledcích
 function vypisVysledek() {
     let skore = document.querySelector('#skore');
     
@@ -79,12 +98,15 @@ function vypisVysledek() {
         let indexPravdy = kvizoveOtazky[i].indexPravdy;
 
         let otazkaVypisu = document.createElement('h3');
+        let tvojeOdpoved = document.createElement('p');
         let spravnaOdpoved = document.createElement('p');
 
         otazkaVypisu.innerHTML = (i+1) + ' . ' + kvizoveOtazky[i].otazka;
+        tvojeOdpoved.innerHTML = 'Tvá odpověď zní: ' + seznamOdpovedi[i];
         spravnaOdpoved.innerHTML = 'Správná odpověď byla: ' + kvizoveOtazky[i].odpoved[indexPravdy];
 
         vypisOdpovedi.appendChild(otazkaVypisu);
+        vypisOdpovedi.appendChild(tvojeOdpoved);
         vypisOdpovedi.appendChild(spravnaOdpoved);
     }
 
@@ -94,6 +116,7 @@ function vypisVysledek() {
 function restart() {
     seznamOdpovedi = [];
     i = 0;
+    vypisOdpovedi.innerHTML = ' ';
     kviz.style.display = 'block';
     vysledek.style.display = 'none';
     nactiOtazku();
