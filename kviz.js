@@ -35,6 +35,7 @@ let vysledek = document.querySelector('.vysledek');
 let polozkaNabidky = odpovedi.querySelectorAll('li');
 
 let seznamOdpovedi = [];
+let seznamIndexu = [];
 
 i = 0;
 
@@ -70,6 +71,7 @@ function zkontrolujOdpovedi(udalost) {
     console.log(indexTlacitka);
 
     seznamOdpovedi.push(textTlacitka);
+    seznamIndexu.push(indexTlacitka);
 
     console.log(seznamOdpovedi);
 }
@@ -92,6 +94,7 @@ function ukazVysledek() {
 //Zobrazení údajů ve výsledcích
 function vypisVysledek() {
     let skore = document.querySelector('#skore');
+    let bodiky = 0;
     
     for (let i = 0; i < Object.keys(kvizoveOtazky).length; i++) {
         let vypisOdpovedi = document.querySelector('#vypisOdpovedi');
@@ -108,13 +111,18 @@ function vypisVysledek() {
         vypisOdpovedi.appendChild(otazkaVypisu);
         vypisOdpovedi.appendChild(tvojeOdpoved);
         vypisOdpovedi.appendChild(spravnaOdpoved);
+
+        if (indexPravdy <= seznamIndexu[i]) {
+            bodiky++;
+        }
     }
 
-    skore.innerHTML = 'Správně!';
+    skore.innerHTML = 'Podařilo se ti získat ' + bodiky + 'b.! Úspěšnost ' + (bodiky/Object.keys(kvizoveOtazky).length)*100 + ' %.';
 }
 
 function restart() {
     seznamOdpovedi = [];
+    seznamIndexu = [];
     i = 0;
     vypisOdpovedi.innerHTML = ' ';
     kviz.style.display = 'block';
