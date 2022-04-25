@@ -108,6 +108,7 @@ function vypisVysledek() {
         vypisOdpovedi.appendChild(tvojeOdpoved);
         vypisOdpovedi.appendChild(spravnaOdpoved);
 
+        //Přičítání bodů za správnou odpověď
         if (indexPravdy === seznamIndexu[i] && i < Object.keys(kvizoveOtazky).length) {
             bodiky++;
         }
